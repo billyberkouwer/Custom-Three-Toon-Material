@@ -33,8 +33,8 @@ export default function Home() {
           <sphereGeometry args={[1,32,16]} />
           <shaderMaterial uniforms={toonMaterial.uniforms} fragmentShader={toonMaterial.fragmentShader} vertexShader={toonMaterial.vertexShader} />
         </mesh>
-        <mesh position={[1, 0, 0.5]}>
-          <cylinderGeometry args={[1, 1, 1, 32,16]} />
+        <mesh position={[1, 0, 0.5]} rotation={[Math.PI/2, 0, 0]} >
+          <cylinderGeometry args={[1, 1, 100, 32, 320]} />
           <shaderMaterial uniforms={toonMaterial.uniforms} fragmentShader={toonMaterial.fragmentShader} vertexShader={toonMaterial.vertexShader} />
         </mesh>
         <OrbitControls />
