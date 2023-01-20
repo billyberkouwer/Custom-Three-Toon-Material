@@ -1,8 +1,9 @@
+import { ToonShaderMaterial } from '@/glsl/toon/ToonShaderMaterial';
 import { ToonShaderHatching } from '@/glsl/ToonShader';
 import { useAnimations, useGLTF } from '@react-three/drei';
 import { Object3DNode, useFrame, useThree } from '@react-three/fiber';
 import { MutableRefObject, useEffect, useRef } from 'react';
-import { ShaderMaterial, Mesh, Material, AnimationMixer, AnimationClip, MeshBasicMaterial } from 'three';
+import { ShaderMaterial, Mesh, Material, AnimationMixer, AnimationClip, MeshToonMaterial, MeshBasicMaterial, MeshLambertMaterial } from 'three';
 
 
 export default function BeerFlowMesh() {
@@ -15,15 +16,8 @@ export default function BeerFlowMesh() {
 
     useEffect(() => {
         if (nodes) {
-            const ToonShaderMaterial = new MeshBasicMaterial();
-            nodes.Cylinder.material = ToonShaderMaterial;
+            nodes.Cylinder.material = new ToonShaderMaterial({color: 'yellow'});
             nodes.Cylinder.material.onBeforeCompile = function (shader) {
-                // shader.uniforms = ToonShaderHatching.uniforms;
-                shader.vertexShader = `
-                    varying vec3 vNormal;
-                    uniform float uTime;
-                    uniform float uIntensity;
-                ` + shader.vertexShader;
             }
             actions['Ket.001ActionAction'].play()
             nodes.Cylinder.material.needsUpdate = true;

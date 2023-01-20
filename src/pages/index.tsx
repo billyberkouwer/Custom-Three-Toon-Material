@@ -17,9 +17,9 @@ export default function Home() {
   const ambientLight = useRef() as MutableRefObject<AmbientLight | null>
   
   return (
-    <div className={styles.main}>
+    <div className={styles.main} style={{backgroundColor: 'white'}}>
       <Canvas>
-        <pointLight ref={el => pointLight.current = el} position={[2, 2, 0]} intensity={0.5}/>
+        <directionalLight castShadow ref={el => pointLight.current = el} position={[2, 2, 0]} intensity={0.5}/>
         <ambientLight ref={el => ambientLight.current = el} intensity={0.1}/>
         <BeerFlowMesh />
         <OrbitControls />
