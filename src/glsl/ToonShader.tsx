@@ -9,8 +9,9 @@ export const ToonShaderHatching = {
 
     uniforms: {
 
-        'uDirLightPos': { value: new Vector3(2, 2, 2) },
+        'uDirLightPos': { value: new Vector3(0, 2, 0) },
         'uDirLightColor': { value: new Color(0xffffff) },
+        'uTime' : { value: 0 },
 
         'uAmbientLightColor': { value: new Color(0x050505) },
 
