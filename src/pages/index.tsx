@@ -9,7 +9,8 @@ import { createShaderMaterial } from "@/helpers/materialHelpers"
 import { ToonShaderHatching } from '@/glsl/ToonShader'
 import SphereMesh from '@/meshes/SphereMesh'
 import CylinderMesh from '@/meshes/CylinderMesh'
-import BeerFlowMesh from '@/meshes/BeerFlowMesh'
+import BeerFlowMesh from '@/meshes/NewBeerFlowMesh'
+import NewBeerFlowMesh from '@/meshes/NewBeerFlowMesh'
 
 
 export default function Home() {
@@ -19,9 +20,9 @@ export default function Home() {
   return (
     <div className={styles.main} style={{backgroundColor: 'white'}}>
       <Canvas>
-        <directionalLight castShadow ref={el => pointLight.current = el} position={[2, 2, 0]} intensity={0.5}/>
+        <directionalLight castShadow ref={el => pointLight.current = el} position={[2, 10, 0]} intensity={0.5}/>
         <ambientLight ref={el => ambientLight.current = el} intensity={0.1}/>
-        <BeerFlowMesh />
+        <NewBeerFlowMesh />
         <OrbitControls />
       </Canvas>
     </div>

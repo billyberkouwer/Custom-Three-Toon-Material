@@ -1,58 +1,51 @@
-import { ToonShaderMaterial } from '@/glsl/toon/ToonShaderMaterial';
 import { ToonShaderHatching } from '@/glsl/ToonShader';
-import { useAnimations, useGLTF } from '@react-three/drei';
+import { useGLTF } from '@react-three/drei';
 import { Object3DNode, useFrame, useThree } from '@react-three/fiber';
 import { MutableRefObject, useEffect, useRef } from 'react';
-import { ShaderMaterial, Mesh, Material, AnimationMixer, AnimationClip, MeshToonMaterial, MeshBasicMaterial, MeshLambertMaterial } from 'three';
+import { ShaderMaterial, Mesh, Material } from 'three';
 
 
 export default function BeerFlowMesh() {
     const ref = useRef() as MutableRefObject<Mesh | null>
-    const { nodes, animations } = useGLTF('/beer-tube-shape-key.gltf');
-    const { actions } = useAnimations(animations, ref)
-    // const { scene } = useThree()
+    const gltf = useGLTF('/beer-tube.gltf');
 
-    
+    const { scene } = useThree()
 
     useEffect(() => {
-        if (nodes) {
-            nodes.Cylinder.material = new ToonShaderMaterial({color: 'yellow'});
-            nodes.Cylinder.material.onBeforeCompile = function (shader) {
-            }
-            actions['Ket.001ActionAction'].play()
-            nodes.Cylinder.material.needsUpdate = true;
-            console.log(nodes.Cylinder.material)
-            console.log(new MeshBasicMaterial)
-            console.log(nodes)
-            console.log(animations)
-            console.log(actions)
+        if (gltf && scene) {
+            gltf.scene.traverse((obj) => {
+                if (obj.type === 'Mesh') {
+                    ToonShaderHatching.uniforms.uIntensity.value = 0.1;
+                    (obj as Mesh).material = new ShaderMaterial(ToonShaderHatching);
+                    ((obj as Mesh).material as Material).needsUpdate = true;
+                }
+            })
         }
-    }, [nodes, animations, actions])
+    }, [scene, gltf])
+
+    useEffect(() => {
+        console.log(gltf)
+    }, [gltf])
 
     let time = 0;
 
-    useFrame(() => {
-        if (nodes.Cylinder.material.type === 'ShaderMaterial') {
+    useFrame((state, delta) => {
+        let mesh: Mesh | undefined;
+
+        gltf.scene.traverse((obj) => {
+            if (obj.type === 'Mesh') {
+                mesh = obj as Mesh;
+            }
+        });
+
+        if ((mesh?.material as ShaderMaterial).uniforms?.uTime) {
+            console.log('tick')
+            time += 1 * delta;
+            (mesh?.material as ShaderMaterial).uniforms.uTime.value = time;
         }
     })
 
-    // useFrame((state, delta) => {
-    //     let mesh: Mesh | undefined;
-
-    //     gltf.scene.traverse((obj) => {
-    //         if (obj.type === 'Mesh') {
-    //             mesh = obj as Mesh;
-    //         }
-    //     });
-
-    //     if ((mesh?.material as ShaderMaterial).uniforms?.uTime) {
-    //         console.log('tick')
-    //         time += 1 * delta;
-    //         (mesh?.material as ShaderMaterial).uniforms.uTime.value = time;
-    //     }
-    // })
-
     return (
-        <primitive object={nodes.Cylinder} ref={ref} />
+        <primitive object={gltf.scene} position={[0,-0.4,-6]} rotation={[0, Math.PI, 0]}/>
     )
 }
