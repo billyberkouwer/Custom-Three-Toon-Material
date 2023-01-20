@@ -46,6 +46,6 @@ export default function BeerFlowMesh() {
     })
 
     return (
-        <primitive object={gltf.scene} />
+        <primitive object={gltf.scene} position={[0,-0.4,-6]} rotation={[0, Math.PI, 0]}/>
     )
 }
