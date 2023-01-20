@@ -1,22 +1,22 @@
 import {
-    Color,
-    Vector3
+	Color,
+	Vector3
 } from 'three';
 
 export const ToonShader1 = {
 
-    uniforms: {
+	uniforms: {
 
-        'uDirLightPos': { value: new Vector3() },
-        'uDirLightColor': { value: new Color(0xeeeeee) },
+		'uDirLightPos': { value: new Vector3() },
+		'uDirLightColor': { value: new Color(0xeeeeee) },
 
-        'uAmbientLightColor': { value: new Color(0x050505) },
+		'uAmbientLightColor': { value: new Color(0x050505) },
 
-        'uBaseColor': { value: new Color(0xffffff) }
+		'uBaseColor': { value: new Color(0xffffff) }
 
-    },
+	},
 
-    vertexShader: /* glsl */`
+	vertexShader: `
 
 		varying vec3 vNormal;
 		varying vec3 vRefract;
@@ -36,7 +36,7 @@ export const ToonShader1 = {
 
 		}`,
 
-    fragmentShader: /* glsl */`
+	fragmentShader: `
 
 		uniform vec3 uBaseColor;
 
@@ -77,22 +77,22 @@ export const ToonShader1 = {
 
 export const ToonShader2 = {
 
-    uniforms: {
+	uniforms: {
 
-        'uDirLightPos': { value: new Vector3() },
-        'uDirLightColor': { value: new Color(0xeeeeee) },
+		'uDirLightPos': { value: new Vector3() },
+		'uDirLightColor': { value: new Color(0xeeeeee) },
 
-        'uAmbientLightColor': { value: new Color(0x050505) },
+		'uAmbientLightColor': { value: new Color(0x050505) },
 
-        'uBaseColor': { value: new Color(0xeeeeee) },
-        'uLineColor1': { value: new Color(0x808080) },
-        'uLineColor2': { value: new Color(0x000000) },
-        'uLineColor3': { value: new Color(0x000000) },
-        'uLineColor4': { value: new Color(0x000000) }
+		'uBaseColor': { value: new Color(0xeeeeee) },
+		'uLineColor1': { value: new Color(0x808080) },
+		'uLineColor2': { value: new Color(0x000000) },
+		'uLineColor3': { value: new Color(0x000000) },
+		'uLineColor4': { value: new Color(0x000000) }
 
-    },
+	},
 
-    vertexShader: /* glsl */`
+	vertexShader: `
 
 		varying vec3 vNormal;
 
@@ -103,7 +103,7 @@ export const ToonShader2 = {
 
 		}`,
 
-    fragmentShader: /* glsl */`
+	fragmentShader: `
 
 		uniform vec3 uBaseColor;
 		uniform vec3 uLineColor1;
@@ -143,19 +143,19 @@ export const ToonShader2 = {
 
 export const ToonShaderDotted = {
 
-    uniforms: {
+	uniforms: {
 
-        'uDirLightPos': { value: new Vector3() },
-        'uDirLightColor': { value: new Color(0xeeeeee) },
+		'uDirLightPos': { value: new Vector3() },
+		'uDirLightColor': { value: new Color(0xeeeeee) },
 
-        'uAmbientLightColor': { value: new Color(0x050505) },
+		'uAmbientLightColor': { value: new Color(0x050505) },
 
-        'uBaseColor': { value: new Color(0xffffff) },
-        'uLineColor1': { value: new Color(0x000000) }
+		'uBaseColor': { value: new Color(0xffffff) },
+		'uLineColor1': { value: new Color(0x000000) }
 
-    },
+	},
 
-    vertexShader: /* glsl */`
+	vertexShader: `
 
 		varying vec3 vNormal;
 
@@ -166,7 +166,7 @@ export const ToonShaderDotted = {
 
 		}`,
 
-    fragmentShader: /* glsl */`
+	fragmentShader: `
 
 		uniform vec3 uBaseColor;
 		uniform vec3 uLineColor1;

@@ -2,7 +2,9 @@ import {
     Color,
     Vector3
 } from 'three';
+// @ts-ignore
 import VertexShader from './ToonShader.vert';
+// @ts-ignore
 import FragmentShader from './ToonShader.frag';
 
 export const ToonShaderHatching = {
@@ -12,7 +14,7 @@ export const ToonShaderHatching = {
         'uDirLightPos': { value: new Vector3(0, 2, 0) },
         'uDirLightColor': { value: new Color(0xffffff) },
         'uTime' : { value: 0 },
-        'uIntensity': { value: 0.5 },
+        'uIntensity': { value: 0.2 },
 
         'uAmbientLightColor': { value: new Color(0x050505) },
 

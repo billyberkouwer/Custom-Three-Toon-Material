@@ -9,6 +9,7 @@ import { createShaderMaterial } from "@/helpers/materialHelpers"
 import { ToonShaderHatching } from '@/glsl/ToonShader'
 import SphereMesh from '@/meshes/SphereMesh'
 import CylinderMesh from '@/meshes/CylinderMesh'
+import BeerFlowMesh from '@/meshes/BeerFlowMesh'
 
 
 export default function Home() {
@@ -20,7 +21,7 @@ export default function Home() {
       <Canvas>
         <pointLight ref={el => pointLight.current = el} position={[2, 2, 0]} intensity={0.5}/>
         <ambientLight ref={el => ambientLight.current = el} intensity={0.1}/>
-        <CylinderMesh />
+        <BeerFlowMesh />
         <OrbitControls />
       </Canvas>
     </div>
