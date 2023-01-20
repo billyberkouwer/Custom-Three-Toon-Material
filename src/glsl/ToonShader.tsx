@@ -12,6 +12,7 @@ export const ToonShaderHatching = {
         'uDirLightPos': { value: new Vector3(0, 2, 0) },
         'uDirLightColor': { value: new Color(0xffffff) },
         'uTime' : { value: 0 },
+        'uIntensity': { value: 0.5 },
 
         'uAmbientLightColor': { value: new Color(0x050505) },
 

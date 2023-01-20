@@ -1,5 +1,6 @@
 varying vec3 vNormal;
 uniform float uTime;
+uniform float uIntensity;
 
 vec4 mod289(vec4 x) {
     return x - floor(x * (1.0 / 289.0)) * 289.0; }
@@ -121,7 +122,7 @@ vec4 mod289(vec4 x) {
 
 void main() {
 	vec3 noise = (vec3(snoise(vec4(position, uTime))) - 0.5);
-  vec3 distortedPos = position + noise * normal;
+  vec3 distortedPos = position + (noise * uIntensity) * normal;
 	gl_Position = projectionMatrix * modelViewMatrix * vec4( distortedPos, 1.0 );
 	vNormal = normalize( normalMatrix * normal );
 }
