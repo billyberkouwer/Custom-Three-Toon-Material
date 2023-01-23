@@ -19,7 +19,7 @@ export const ToonShaderHatching = {
 
         'uAmbientLightColor': { value: new Color(0x050505) },
 
-        'uBaseColor': { value: new Color(0xF4D45F) },
+        'uBaseColor': { value: new Color(0xf5db7d) },
         'uLineColor1': { value: new Color(0xf0ce4f) },
         'uLineColor2': { value: new Color(0xf0ce4f) },
         'uLineColor3': { value: new Color(0xf0ce4f) },

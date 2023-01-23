@@ -1,9 +1,11 @@
 import { ToonShaderMaterial } from '@/glsl/toon/ToonShaderMaterial';
 import { ToonShaderHatching } from '@/glsl/ToonShader';
-import { useAnimations, useGLTF } from '@react-three/drei';
+import { Effects, useAnimations, useGLTF, Bounds } from '@react-three/drei';
 import { Object3DNode, useFrame, useThree } from '@react-three/fiber';
 import { MutableRefObject, useEffect, useRef } from 'react';
 import { Selection, Select, EffectComposer, Outline, DepthOfField } from '@react-three/postprocessing'
+import { BlendFunction, Resizer, KernelSize } from 'postprocessing'
+
 
 import { ShaderMaterial, Mesh, Material, AnimationMixer, AnimationClip, MeshToonMaterial, MeshBasicMaterial, MeshLambertMaterial, DoubleSide } from 'three';
 
@@ -12,8 +14,7 @@ export default function NewBeerFlowMesh() {
     const ref = useRef() as MutableRefObject<Mesh | null>
     const { nodes, animations } = useGLTF('/miller-full-scene.gltf');
     const { actions } = useAnimations(animations, ref)
-    // const { scene } = useThree()
-
+    const { size } = useThree()
     
     useEffect(() => {
         if (nodes) {
@@ -38,13 +39,31 @@ export default function NewBeerFlowMesh() {
     })
 
     return (
-        <Selection>
-            <EffectComposer multisampling={8} autoClear={true}>
-                <Outline visibleEdgeColor={0} edgeStrength={1} width={100} />
-            </EffectComposer>
-            <Select enabled>
-                <primitive object={nodes.Scene} ref={ref} />
-            </Select>
-        </Selection>
+        <>
+            <primitive object={nodes.Scene} />
+            {/* <Selection>
+                    <EffectComposer multisampling={0} autoClear={false}>
+                        <Outline
+                            selection={[ref]}
+                            selectionLayer={10} // selection layer
+                            blendFunction={BlendFunction.ALPHA} // set this to BlendFunction.ALPHA for dark outlines
+                            edgeStrength={1000} // the edge strength
+                            pulseSpeed={0.0} // a pulse speed. A value of zero disables the pulse effect
+                            visibleEdgeColor="black" // the color of visible edges
+                            hiddenEdgeColor="black" // the color of hidden edges
+                            width={size.width} // render width
+                            height={size.height} // render height
+                            kernelSize={KernelSize.LARGE} // blur kernel size
+                            blur={true} // whether the outline should be blurred
+                            xRay={true} // indicates whether X-Ray outlines are enabled
+                        />
+                    </EffectComposer>
+                    <Bounds>
+                        <Select enabled>
+                            <primitive object={nodes.Cylinder} ref={ref} />
+                        </Select>
+                    </Bounds>
+                </Selection> */}
+        </>
     )
 }
