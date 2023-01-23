@@ -1,6 +1,7 @@
 import {
     Color,
-    Vector3
+    Vector3,
+    Vector2
 } from 'three';
 // @ts-ignore
 import VertexShader from './ToonShader.vert';
@@ -25,6 +26,7 @@ export const ToonShaderHatching = {
         'uLineColor4': { value: new Color(0xdbb832) },
         'uLineColor5': { value: new Color(0xffeead) },
         'uLineColor6': { value: new Color(0xf0ce4f) },
+        'size': { value: new Vector2(0, 0)}
 
     },
 

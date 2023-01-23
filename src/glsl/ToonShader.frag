@@ -139,10 +139,10 @@ void main(){
                         max(
                                 (snoise(
                                         vec4(
-                                        vNormal.r * ((gl_FragCoord.r*gl_FragCoord.g)/50000.0), 
-                                        vNormal.g * ((gl_FragCoord.r*gl_FragCoord.g)/50000.0) - uTime * 2.0, 
-                                        vNormal.b * ((gl_FragCoord.r*gl_FragCoord.g)/50000.0),
-                                        1.0)) - 0.5) * 5.0, 
+                                        vNormal.r * ((gl_FragCoord.r*gl_FragCoord.g)/90000.0), 
+                                        vNormal.g * ((gl_FragCoord.r*gl_FragCoord.g)/90000.0) - uTime * 2.0, 
+                                        vNormal.b * ((gl_FragCoord.r*gl_FragCoord.g)/90000.0),
+                                        1.0)) - 0.65) * 10.0, 
                                 0.0)
                         ), 
                 1.0);

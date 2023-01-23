@@ -13,9 +13,7 @@ export default function Home() {
   return (
     <div className={styles.main} style={{backgroundColor: 'white'}}>
       <Canvas>
-        <directionalLight castShadow ref={el => directionalLight.current = el} position={[2, 10, 0]} intensity={0.5}/>
-        <ambientLight ref={el => ambientLight.current = el} intensity={0.1}/>
-            <NewBeerFlowMesh />
+        <NewBeerFlowMesh />
         <OrbitControls />
       </Canvas>
     </div>
