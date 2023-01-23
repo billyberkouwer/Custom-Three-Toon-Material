@@ -12,7 +12,7 @@ export default function Home() {
   
   return (
     <div className={styles.main} style={{backgroundColor: 'white'}}>
-      <Canvas>
+      <Canvas camera={{position: [-6, 1, -6]}}>
         <NewBeerFlowMesh />
         <OrbitControls />
       </Canvas>
