@@ -121,7 +121,7 @@ vec4 j1=permute(permute(permute(permute(
       }
       
       void main(){
-        vec3 noise=vec3(snoise(vec4((position*0.5-uTime*0.75),1.)))-.5;
+        vec3 noise=vec3(snoise(vec4((position.x), position.y, (position.z*0.5-uTime*0.75), 1.)))-.5;
 
         // if(position.y>.1){
         //   if(noise.x<-uIntensity-0.3){
@@ -134,8 +134,6 @@ vec4 j1=permute(permute(permute(permute(
         // }
 
         vec3 distortedPos=position+(noise*uIntensity)*normal;
-        
-
         gl_Position=projectionMatrix*modelViewMatrix*vec4(distortedPos,1.);
         vNormal=normalize(normalMatrix*normal);
       }

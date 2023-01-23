@@ -5,6 +5,7 @@ uniform vec3 uLineColor3;
 uniform vec3 uLineColor4;
 uniform vec3 uLineColor5;
 uniform vec3 uLineColor6;
+uniform float uTime;
 
 uniform vec3 uDirLightPos;
 uniform vec3 uDirLightColor;
@@ -133,40 +134,29 @@ vec4 j1=permute(permute(permute(permute(
 
 void main(){
     
+    vec4 beerfroth = vec4(
+                vec3(
+                        max(
+                                (snoise(
+                                        vec4(
+                                        vNormal.r * ((gl_FragCoord.r*gl_FragCoord.g)/50000.0), 
+                                        vNormal.g * ((gl_FragCoord.r*gl_FragCoord.g)/50000.0) - uTime * 2.0, 
+                                        vNormal.b * ((gl_FragCoord.r*gl_FragCoord.g)/50000.0),
+                                        1.0)) - 0.5) * 5.0, 
+                                0.0)
+                        ), 
+                1.0);
+
     float directionalLightWeighting=max(dot(normalize(vNormal),uDirLightPos),0.);
     vec3 lightWeighting=uAmbientLightColor+uDirLightColor*directionalLightWeighting;
     
-    gl_FragColor=vec4(uBaseColor,1.0);
-    
-    if(length(lightWeighting)>4.999){
-        
-            
-            gl_FragColor=vec4(uLineColor6,1.);
-            
-        
-    }
+    gl_FragColor=vec4(uBaseColor,1.0) + beerfroth;
 
     
-    if(length(lightWeighting)>3.){
+    if(length(lightWeighting)>3.2){
         
             
-            gl_FragColor=vec4(uLineColor6,1.);
-            
-        
-    }
-    
-    if(length(lightWeighting)>2.){
-        
-            
-            gl_FragColor=vec4(uLineColor5,1.);
-            
-        
-    }
-    
-    if(length(lightWeighting)<1.){
-        
-            
-            gl_FragColor=vec4(uLineColor1,1.);
+            gl_FragColor=vec4(uLineColor5,1.) + beerfroth;
             
         
     }
