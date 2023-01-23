@@ -1,6 +1,6 @@
 import styles from '@/styles/Home.module.css'
 import { Canvas} from '@react-three/fiber'
-import { OrbitControls } from '@react-three/drei'
+import { Environment, OrbitControls } from '@react-three/drei'
 import {  useRef } from 'react'
 import { PointLight, AmbientLight, DirectionalLight } from 'three'
 import { MutableRefObject } from 'react'
@@ -13,7 +13,10 @@ export default function Home() {
   return (
     <div className={styles.main} style={{backgroundColor: 'white'}}>
       <Canvas camera={{position: [-6, 1, -6]}}>
+        {/* <directionalLight position={[-2,10,10]}/>
+        <directionalLight position={[2,10,10]}/> */}
         <NewBeerFlowMesh />
+        <Environment preset='apartment' background blur={0.1}/>
         <OrbitControls />
       </Canvas>
     </div>
